@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+
+  <!-- ✅ Security + SEO -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Nova AI Talking Avatar - Chat with a 3D assistant powered by AI" />
+
+  <!-- ✅ Prevent basic XSS -->
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta http-equiv="X-Frame-Options" content="DENY" />
+  <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
+
+  <title>Nova Talking Avatar</title>
+
+  <!-- ✅ Preconnect for performance -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+
+  <link rel="stylesheet" href="/styles.css" />
+
+  <!-- ✅ Safe module imports -->
+  <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js/+esm",
+          "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/",
+          "talkinghead": "https://cdn.jsdelivr.net/gh/met4citizen/TalkingHead@1.7/modules/talkinghead.mjs"
+        }
+      }
+    </script>
+</head>
+
+<body>
+  <div class="ambient"></div>
+
+  <!-- 🔹 NAVBAR -->
+  <header class="topbar">
+    <a class="brand" href="#/">
+      <span class="brand-mark">N</span>
+      <span>Nova</span>
+    </a>
+
+    <nav class="nav">
+      <a href="#/" data-link="home">Home</a>
+      <a href="#/about" data-link="about">About</a>
+      <a href="#/login" data-link="login">Login</a>
+      <a class="nav-cta" href="#/chat" data-link="chat">Chat</a>
+    </nav>
+  </header>
+
+  <main id="app"></main>
+
+  <!-- 🔹 HOME -->
+  <template id="home-page">
+    <section class="hero page-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">AI powered talking assistant</p>
+        <h1>Chat with an avatar that answers out loud.</h1>
+        <p class="lead">
+          Type a question, get a response, and hear Nova speak it back through a 3D avatar.
+        </p>
+
+        <div class="hero-actions">
+          <a class="button primary" href="#/chat">Start chatting</a>
+          <a class="button ghost" href="#/about">See how it works</a>
+        </div>
+
+        <div class="status-row">
+          <span class="pulse"></span>
+          <span id="key-status">Backend connection required</span>
+        </div>
+      </div>
+
+      <div class="showcase">
+        <div id="home-avatar" class="avatar-stage compact-stage">
+          <div class="avatar-loader">Loading avatar...</div>
+        </div>
+
+        <div class="showcase-panel">
+          <span>Natural voice</span>
+          <span>AI responses</span>
+          <span>3D avatar</span>
+        </div>
+      </div>
+    </section>
+  </template>
+
+  <!-- 🔹 ABOUT -->
+  <template id="about-page">
+    <section class="about page-grid">
+      <div>
+        <p class="eyebrow">About Nova</p>
+        <h1>Simple system, powerful experience.</h1>
+        <p class="lead">
+          The frontend interacts with a backend server which securely calls AI APIs.
+          Audio is generated and played through a 3D avatar.
+        </p>
+      </div>
+
+      <div class="feature-grid">
+        <article>
+          <span class="feature-icon">01</span>
+          <h2>Ask</h2>
+          <p>User sends a message through chat UI.</p>
+        </article>
+
+        <article>
+          <span class="feature-icon">02</span>
+          <h2>Process</h2>
+          <p>Backend securely calls AI model.</p>
+        </article>
+
+        <article>
+          <span class="feature-icon">03</span>
+          <h2>Respond</h2>
+          <p>Audio + animation rendered in browser.</p>
+        </article>
+      </div>
+    </section>
+  </template>
+
+  <!-- 🔹 LOGIN -->
+  <template id="login-page">
+    <section class="auth-shell">
+      <form class="login-card" id="login-form">
+        <p class="eyebrow">Welcome</p>
+        <h1>Login (Demo)</h1>
+
+        <label>
+          Name
+          <input id="name" required />
+        </label>
+
+        <label>
+          Email
+          <input id="email" type="email" required />
+        </label>
+
+        <button class="button primary" type="submit">Continue</button>
+
+        <p class="fineprint">
+          ⚠️ Demo only — no real authentication is implemented.
+        </p>
+      </form>
+    </section>
+  </template>
+
+  <!-- 🔹 CHAT -->
+  <template id="chat-page">
+    <section class="chat-layout">
+      <aside class="chat-side">
+        <h1>Nova</h1>
+
+        <div id="chat-avatar" class="avatar-stage">
+          <div class="avatar-loader">Loading avatar...</div>
+        </div>
+
+        <div class="voice-controls">
+          <button id="mute-btn">🔊</button>
+          <button id="replay-btn">↻</button>
+          <button id="clear-btn">⌫</button>
+        </div>
+      </aside>
+
+      <section class="chat-panel">
+        <div class="chat-header">
+          <h2 id="chat-title">Ask anything</h2>
+          <div class="chat-actions">
+            <button class="button ghost key-open" id="key-open" type="button">API key</button>
+            <span class="mini-status" id="chat-status">Ready</span>
+          </div>
+        </div>
+
+        <form class="key-panel" id="key-form" hidden>
+          <label for="gemini-key">Gemini API key</label>
+          <div class="key-row">
+            <input id="gemini-key" name="gemini-key" type="password" autocomplete="off" placeholder="Paste your AIza... key here" />
+            <button class="button primary key-save" type="submit">Save</button>
+            <button class="button ghost key-clear" id="key-clear" type="button">Clear</button>
+          </div>
+          <p id="key-help" class="fineprint">Your key is kept only until this page is refreshed or reopened.</p>
+        </form>
+
+        <div id="messages" class="messages"></div>
+
+        <form id="chat-form" class="composer">
+          <textarea id="message" required placeholder="Type message..."></textarea>
+          <button class="send-button" id="send-btn" type="submit" aria-label="Send message">➜</button>
+        </form>
+      </section>
+    </section>
+  </template>
+
+  <!-- ✅ Load main JS safely -->
+  <script type="module" src="/app.js"></script>
+</body>
+
+</html>
