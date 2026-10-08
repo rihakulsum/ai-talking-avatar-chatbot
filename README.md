@@ -87,3 +87,7 @@ git status
 npm run dev
 npm start
 ```
+![Screenshot 2026-10-08 at 8 55 13 PM](https://github.com/user-attachments/assets/530bfd9f-d178-4879-bae3-10648fb61862)
+<img width="1470" height="956" alt="Screenshot 2026-10-08 at 8 59 25 PM" src="https://github.com/user-attachments/assets/e0975f23-7c05-46af-b158-bddcf163c326" />
+
+
