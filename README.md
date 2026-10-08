@@ -89,5 +89,9 @@ npm start
 ```
 ![Screenshot 2026-10-08 at 8 55 13 PM](https://github.com/user-attachments/assets/530bfd9f-d178-4879-bae3-10648fb61862)
 <img width="1470" height="956" alt="Screenshot 2026-10-08 at 8 59 25 PM" src="https://github.com/user-attachments/assets/e0975f23-7c05-46af-b158-bddcf163c326" />
+<img width="1470" height="956" alt="Screenshot 2026-10-08 at 8 55 27 PM" src="https://github.com/user-attachments/assets/a003944b-c17a-4d07-924f-c93028da62fa" />
+<img width="1470" height="956" alt="Screenshot 2026-10-08 at 8 59 08 PM" src="https://github.com/user-attachments/assets/105cf478-b1b3-4651-b997-544f56cef281" />
+<img width="1470" height="956" alt="Screenshot 2026-10-08 at 8 57 47 PM" src="https://github.com/user-attachments/assets/0d374fe8-19e2-446d-a6ac-ad22c0b29287" />
+<img width="1470" height="956" alt="Screenshot 2026-10-08 at 8 57 39 PM" src="https://github.com/user-attachments/assets/a3972a66-1fbc-4506-abb3-3ffe58b57ac3" />
 
 
